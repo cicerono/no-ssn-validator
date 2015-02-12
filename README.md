@@ -1,0 +1,1 @@
+# no-ssn-validator
