@@ -1,5 +1,7 @@
 var noSSNValidator          = require("../lib/no_ssn_validator"),
     isValid                 = noSSNValidator.isValid,
+    getAge                  = noSSNValidator.getAge,
+    getCentury              = noSSNValidator.getCentury,
     calculateFirstChecksum  = noSSNValidator.calculateFirstChecksum,
     calculateSecondChecksum = noSSNValidator.calculateSecondChecksum;
 
@@ -62,6 +64,21 @@ describe("isValid", function () {
     spyOn(noSSNValidator, "calculateSecondChecksum").and.returnValue("5");
 
     expect(isValid("11021599915")).toBe(true);
+  });
+});
+
+describe("getAge", function () {
+  it("should return correct age(0) for 11021599915", function () {
+    var baseTime = new Date(2017, 05, 05);
+    jasmine.clock().mockDate(baseTime);
+
+    spyOn(noSSNValidator, "isValid").and.returnValue(true);
+    expect(getAge("11021599915")).toBe(2);
+  });
+
+  it("should return false for invalid number", function () {
+    spyOn(noSSNValidator, "isValid").and.returnValue(false);
+    expect(getAge("01234567890")).toBe(false);
   });
 });
 
