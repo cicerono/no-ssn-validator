@@ -1,6 +1,7 @@
 var noSSNValidator          = require("../lib/no_ssn_validator"),
     isValid                 = noSSNValidator.isValid,
     getGender               = noSSNValidator.getGender,
+    Gender                  = noSSNValidator.Gender,
     calculateFirstChecksum  = noSSNValidator.calculateFirstChecksum,
     calculateSecondChecksum = noSSNValidator.calculateSecondChecksum;
 
@@ -69,12 +70,12 @@ describe("isValid", function () {
 describe("getGender", function () {
   it("should return 'MALE' for 11021599915", function () {
     spyOn(noSSNValidator, "isValid").and.returnValue(true);
-    expect(getGender("11021599915")).toBe("MALE");
+    expect(getGender("11021599915")).toBe(Gender.MALE);
   });
 
   it("should return 'FEMALE' for 88010148833", function () {
     spyOn(noSSNValidator, "isValid").and.returnValue(true);
-    expect(getGender("88010148833")).toBe("FEMALE");
+    expect(getGender("88010148833")).toBe(Gender.FEMALE);
   });
 
   it("should return false for invalid number", function () {
