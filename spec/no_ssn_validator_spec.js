@@ -2,6 +2,8 @@ var noSSNValidator          = require("../lib/no_ssn_validator"),
     isValid                 = noSSNValidator.isValid,
     getAge                  = noSSNValidator.getAge,
     getCentury              = noSSNValidator.getCentury,
+    getBirthDate            = noSSNValidator.getBirthDate,
+    getAgeFromBirthDate     = noSSNValidator.getAgeFromBirthDate,
     calculateFirstChecksum  = noSSNValidator.calculateFirstChecksum,
     calculateSecondChecksum = noSSNValidator.calculateSecondChecksum;
 
@@ -79,6 +81,33 @@ describe("getAge", function () {
   it("should return false for invalid number", function () {
     spyOn(noSSNValidator, "isValid").and.returnValue(false);
     expect(getAge("01234567890")).toBe(false);
+  });
+});
+
+describe("getBirthdate", function () {
+  it("should return correct birthDate for 11021599915", function () {
+    spyOn(noSSNValidator, "isValid").and.returnValue(true);
+    expect(getBirthDate("11021599915")).toBe("2015/02/11");
+  });
+
+  it("should return false for invalid number", function () {
+    spyOn(noSSNValidator, "isValid").and.returnValue(false);
+    expect(getBirthDate("01234567890")).toBe(false);
+  });
+});
+
+describe("getAgeFromBirthDate", function () {
+  it("should return for ", function () {
+    var baseTime = new Date(2015, 01, 01);
+    jasmine.clock().mockDate(baseTime);
+
+    expect(getAgeFromBirthDate("2010/05/15")).toBe(4);
+  });
+});
+
+describe("getCentury", function () {
+  it("should return century 20 for 11021599915", function () {
+    expect(getCentury("999","15")).toBe(20);
   });
 });
 
