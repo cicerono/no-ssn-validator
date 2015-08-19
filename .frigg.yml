@@ -1,0 +1,9 @@
+setup_tasks:
+  - npm install
+
+tasks:
+  - npm test
+
+coverage:
+  parser: cobertura
+  path: coverage/cobertura-coverage.xml
