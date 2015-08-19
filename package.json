@@ -4,9 +4,10 @@
   "version": "1.0.0",
   "main": "./lib/no_ssn_validator.js",
   "scripts": {
-    "test": "istanbul cover _mocha test/ && istanbul report cobertura"
+    "test": "istanbul cover _mocha -- --compilers js:babel/register test && istanbul report cobertura"
   },
   "devDependencies": {
+    "babel": "^5.8.21",
     "chai": "^3.2.0",
     "istanbul": "^0.3.18",
     "mocha": "^2.2.5",
