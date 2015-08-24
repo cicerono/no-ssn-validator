@@ -3,7 +3,14 @@
   "lisence": "MIT",
   "version": "1.0.0",
   "main": "./lib/no_ssn_validator.js",
+  "scripts": {
+    "test": "istanbul cover _mocha -- --compilers js:babel/register test && istanbul report cobertura"
+  },
   "devDependencies": {
-    "jasmine": "2.2.1"
+    "babel": "^5.8.21",
+    "chai": "^3.2.0",
+    "istanbul": "^0.3.18",
+    "mocha": "^2.2.5",
+    "sinon": "^1.15.4"
   }
 }
