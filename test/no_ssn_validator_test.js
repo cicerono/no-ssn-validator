@@ -2,7 +2,7 @@ import {expect} from 'chai';
 import sinon from 'sinon'
 
 var noSSNValidator = require("../lib/no_ssn_validator"),
-{isValid, getGender, Gender, calculateFirstChecksum, calculateSecondChecksum} = noSSNValidator
+{isDateValid, isValid, getGender, Gender, calculateFirstChecksum, calculateSecondChecksum} = noSSNValidator
 
 describe("noSSNValidator", () => {
   var sandbox;
@@ -96,51 +96,52 @@ describe("noSSNValidator", () => {
 
   describe("isDateValid", () => {
     it("should return false for a January date higher than 31", () => {
-      expect(isValid("320100")).to.equal(false);
+      expect(isDateValid("320100")).to.equal(false);
     });
 
     it("should return false for a February date higher than 29", () => {
-      expect(isValid("300200")).to.equal(false);
+      expect(isDateValid("300200")).to.equal(false);
     });
 
     it("should return false for a March date higher than 31", () => {
-      expect(isValid("320300")).to.equal(false);
+      expect(isDateValid("320300")).to.equal(false);
     });
 
     it("should return false for a April date higher than 30", () => {
-      expect(isValid("310400")).to.equal(false);
+      expect(isDateValid("310400")).to.equal(false);
     });
 
     it("should return false for a May date higher than 31", () => {
-      expect(isValid("320500")).to.equal(false);
+      expect(isDateValid("320500")).to.equal(false);
     });
 
     it("should return false for a June date higher than 30", () => {
-      expect(isValid("310600")).to.equal(false);
+      expect(isDateValid("310600")).to.equal(false);
     });
 
     it("should return false for a July date higher than 31", () => {
-      expect(isValid("320700")).to.equal(false);
+      expect(isDateValid("320700")).to.equal(false);
     });
 
     it("should return false for a August date higher than 31", () => {
-      expect(isValid("320800")).to.equal(false);
+      expect(isDateValid("320800")).to.equal(false);
     });
 
     it("should return false for a September date higher than 30", () => {
-      expect(isValid("310900")).to.equal(false);
+      expect(isDateValid("310900")).to.equal(false);
     });
 
     it("should return false for a Octo.equalr date higher than 31", () => {
-      expect(isValid("321000")).to.equal(false);
+      expect(isDateValid("321000")).to.equal(false);
     });
 
     it("should return false for a November date higher than 30", () => {
-      expect(isValid("311100")).to.equal(false);
+      expect(isDateValid("311100")).to.equal(false);
     });
 
     it("should return false for a Desember date higher than 31", () => {
-      expect(isValid("321200")).to.equal(false);
+      expect(isDateValid("321200")).to.equal(false);
+    });
     });
   });
 
