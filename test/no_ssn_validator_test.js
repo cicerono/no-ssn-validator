@@ -95,6 +95,14 @@ describe("noSSNValidator", () => {
   });
 
   describe("isDateValid", () => {
+    it("should return false for a day lower than 01", () => {
+      expect(isDateValid("000100")).to.equal(false);
+    });
+
+    it("should return false for a month lower than 01", () => {
+      expect(isDateValid("010000")).to.equal(false);
+    });
+
     it("should return false for a January date higher than 31", () => {
       expect(isDateValid("320100")).to.equal(false);
     });
