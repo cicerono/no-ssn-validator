@@ -2,7 +2,7 @@ import {expect} from 'chai';
 import sinon from 'sinon'
 
 var noSSNValidator = require("../lib/no_ssn_validator"),
-{isDateValid, isValid, getGender, Gender, calculateFirstChecksum, calculateSecondChecksum} = noSSNValidator
+{isDateValid, isDNumber, isValid, getGender, Gender, calculateFirstChecksum, calculateSecondChecksum} = noSSNValidator
 
 describe("noSSNValidator", () => {
   var sandbox;
@@ -75,6 +75,14 @@ describe("noSSNValidator", () => {
 
       expect(isValid("11021599915")).to.equal(true);
     });
+
+    it("should return true for a correct d-number", () => {
+      sandbox.stub(noSSNValidator, "isDateValid").returns(true);
+      sandbox.stub(noSSNValidator, "calculateFirstChecksum").returns("5");
+      sandbox.stub(noSSNValidator, "calculateSecondChecksum").returns("9");
+
+      expect(isValid("45118036559")).to.equal(true);
+    });
   });
 
   describe("getGender", () => {
@@ -91,6 +99,20 @@ describe("noSSNValidator", () => {
     it("should return false for invalid number", () => {
       sandbox.stub(noSSNValidator, "isValid").returns(false);
       expect(getGender("01234567890")).to.equal(false);
+    });
+  });
+
+  describe("isDNumber", () => {
+    it("should return false if the offset is below 41", () => {
+      expect(isDNumber("201185")).to.equal(false);
+    });
+
+    it("should return false if the offset it higher than 71", () => {
+      expect(isDNumber("721185")).to.equal(false);
+    });
+
+    it("should return true for a valid day with 40 in offset", () => {
+      expect(isDNumber("411185")).to.equal(true);
     });
   });
 
