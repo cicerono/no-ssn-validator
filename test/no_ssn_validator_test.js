@@ -142,6 +142,9 @@ describe("noSSNValidator", () => {
     it("should return false for a Desember date higher than 31", () => {
       expect(isDateValid("321200")).to.equal(false);
     });
+
+    it("should return true for a valid date", () => {
+      expect(isDateValid("010101")).to.equal(true);
     });
   });
 
