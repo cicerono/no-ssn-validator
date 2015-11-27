@@ -4,11 +4,15 @@
   "version": "1.1.0",
   "main": "./lib/no_ssn_validator.js",
   "scripts": {
-    "test": "istanbul cover _mocha -- --compilers js:babel/register test && istanbul report cobertura"
+    "test": "istanbul cover _mocha -- --compilers js:babel/register test && istanbul report cobertura",
+    "lint": "eslint ."
   },
   "devDependencies": {
     "babel": "^5.8.21",
+    "babel-eslint": "^4.1.6",
     "chai": "^3.2.0",
+    "eslint": "^1.10.1",
+    "eslint-config-cicero": "^1.0.0",
     "istanbul": "^0.3.18",
     "mocha": "^2.2.5",
     "sinon": "^1.15.4"

@@ -1,11 +1,18 @@
-import {expect} from 'chai';
-import sinon from 'sinon'
-
-var noSSNValidator = require("../lib/no_ssn_validator"),
-{isDateValid, isDNumber, isValid, getGender, Gender, calculateFirstChecksum, calculateSecondChecksum} = noSSNValidator
+/* eslint-env mocha */
+import {expect} from "chai";
+import sinon from "sinon";
+import noSSNValidator, {
+  isDateValid,
+  isDNumber,
+  isValid,
+  getGender,
+  Gender,
+  calculateFirstChecksum,
+  calculateSecondChecksum,
+} from "../lib/no_ssn_validator";
 
 describe("noSSNValidator", () => {
-  var sandbox;
+  let sandbox;
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
   });
