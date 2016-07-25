@@ -11,7 +11,7 @@ var noSSNValidator = require("../lib/no_ssn_validator"),
   calculateFirstChecksum,
   calculateSecondChecksum,
   getCentury,
-  getBirthDate
+  getBirthdate
 } = noSSNValidator
 
 describe("noSSNValidator", () => {
@@ -366,17 +366,17 @@ describe("noSSNValidator", () => {
     });
   });
 
-  describe("getBirthDate", () => {
+  describe("getBirthdate", () => {
     it("should return 27-10-1964 for 27106443861", () => {
-      expect(getBirthDate("27106443861")).to.deep.equal(new Date(1964, 9, 27));
+      expect(getBirthdate("27106443861")).to.deep.equal(new Date(1964, 9, 27));
     });
 
     it("should return 01-09-2010 for 01091096257", () => {
-      expect(getBirthDate("01091096257")).to.deep.equal(new Date(2010, 8, 1));
+      expect(getBirthdate("01091096257")).to.deep.equal(new Date(2010, 8, 1));
     });
 
     it("should return false for invalid ssn 01234567890", () => {
-      expect(getBirthDate("01234567890")).to.equal(false);
+      expect(getBirthdate("01234567890")).to.equal(undefined);
     });
   });
 });
