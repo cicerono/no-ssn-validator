@@ -26,6 +26,15 @@ getGender("01129955131") // => Gender.MALE
 getGender("01234567890") // => false
 ```
 
+### `getBirthDate(ssn)`
+```javascript
+import {getBirthDate} from 'no-ssn-validator';
+
+getBirthDate("27106443861") // => Date(1964, 9, 27)
+getBirthDate("01091096257") // => Date(2010, 8, 1)
+getBirthDate("01234567890") // => false
+```
+
 ## Run tests
 ```
 $ npm test
