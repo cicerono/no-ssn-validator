@@ -1,7 +1,7 @@
 {
   "name": "no-ssn-validator",
   "lisence": "MIT",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "./lib/no_ssn_validator.js",
   "scripts": {
     "test": "istanbul cover _mocha -- --compilers js:babel/register test && istanbul report cobertura"
