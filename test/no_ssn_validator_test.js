@@ -2,7 +2,17 @@ import {expect} from 'chai';
 import sinon from 'sinon'
 
 var noSSNValidator = require("../lib/no_ssn_validator"),
-{isDateValid, isDNumber, isValid, getGender, Gender, calculateFirstChecksum, calculateSecondChecksum} = noSSNValidator
+{
+  isDateValid,
+  isDNumber,
+  isValid,
+  getGender,
+  Gender,
+  calculateFirstChecksum,
+  calculateSecondChecksum,
+  getCentury,
+  getBirthdate
+} = noSSNValidator
 
 describe("noSSNValidator", () => {
   var sandbox;
@@ -317,6 +327,56 @@ describe("noSSNValidator", () => {
     // Using the formula would yield 10, but 10 is not allowed as a checksum.
     it("should return false for 0101010000", () => {
       expect(calculateSecondChecksum("0101010000")).to.equal(false);
+    });
+  });
+
+  describe("getCentury", () => {
+    it("should return 19th century when individualNumber is less than 500", () => {
+      expect(getCentury("499", "00")).to.equal(19);
+    });
+
+    it("should return 18th century when individualNumber is 500 and year is more than 54", () => {
+      expect(getCentury("500", "55")).to.equal(18);
+      expect(getCentury("500", "99")).to.equal(18);
+    });
+
+    it("should return 18th century when individualNumber is 749 and year is more than 54", () => {
+      expect(getCentury("749", "55")).to.equal(18);
+      expect(getCentury("749", "99")).to.equal(18);
+    });
+
+    it("should return 20th century when individualNumber is 500 and year is less than 40", () => {
+      expect(getCentury("500", "39")).to.equal(20);
+      expect(getCentury("500", "00")).to.equal(20);
+    });
+
+    it("should return 20th century when individualNumber is 999 and year is less than 40", () => {
+      expect(getCentury("999", "39")).to.equal(20);
+      expect(getCentury("999", "00")).to.equal(20);
+    });
+
+    it("should return 19th century when individualNumber is 900 and year is more than 39", () => {
+      expect(getCentury("900", "40")).to.equal(19);
+      expect(getCentury("900", "99")).to.equal(19);
+    });
+
+    it("should return 19th century when individualNumber is 900 and year is more than 39", () => {
+      expect(getCentury("999", "40")).to.equal(19);
+      expect(getCentury("999", "99")).to.equal(19);
+    });
+  });
+
+  describe("getBirthdate", () => {
+    it("should return 27-10-1964 for 27106443861", () => {
+      expect(getBirthdate("27106443861")).to.deep.equal(new Date(1964, 9, 27));
+    });
+
+    it("should return 01-09-2010 for 01091096257", () => {
+      expect(getBirthdate("01091096257")).to.deep.equal(new Date(2010, 8, 1));
+    });
+
+    it("should return false for invalid ssn 01234567890", () => {
+      expect(getBirthdate("01234567890")).to.equal(undefined);
     });
   });
 });
